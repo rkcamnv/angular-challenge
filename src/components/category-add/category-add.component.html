@@ -1,0 +1,52 @@
+<div class="dark:bg-gray-800 rounded-xl p-6 h-full">
+  <form #formCategory="ngForm" (ngSubmit)="onSubmit()">
+    <div class="tui-row">
+      <div class="tui-col_6">
+        <tui-input
+          ngModel
+          name="name"
+          tuiTextfieldExampleText="Type the name..."
+          tuiTextfieldSize="m"
+          required
+          >Category Name</tui-input
+        >
+        <div class="h-10 pt-2">
+          <span
+            *ngIf="
+              formCategory.controls['name']?.hasError('required') &&
+              formCategory.controls['name']?.touched
+            "
+            class="text-red-600"
+          >
+            Category name is required!
+          </span>
+        </div>
+      </div>
+      <div class="tui-col_6">
+        <tui-input
+          [ngModel]="'https://placeimg.com/640/480/any'"
+          name="image"
+          tuiTextfieldExampleText="The link of image..."
+          tuiTextfieldSize="m"
+          required
+          >Category Image</tui-input
+        >
+        <div class="h-10 pt-2">
+          <span
+            *ngIf="
+              formCategory.controls['image']?.hasError('required') &&
+              formCategory.controls['image']?.touched
+            "
+            class="text-red-600"
+          >
+            Category image is required!
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <button tuiButton size="m" [showLoader]="isLoading">Create Category</button>
+    </div>
+  </form>
+</div>
