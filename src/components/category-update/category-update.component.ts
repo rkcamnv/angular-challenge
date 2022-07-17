@@ -2,19 +2,19 @@ import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
 import {
+  catchError,
   concatMap,
   finalize,
   Observable,
   of,
   Subject,
-  Subscription,
   switchMap,
-  takeUntil,
   tap,
 } from 'rxjs';
 import { ICategory } from '../../interfaces/category';
 import { NgForm } from '@angular/forms';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-category-update',
@@ -68,18 +68,24 @@ export class CategoryUpdateComponent implements OnInit, OnDestroy {
   updateCategory = (category: ICategory) =>
     this.updateCategory$
       .pipe(
-        takeUntil(this.subscription$),
         tap(() => (this.isLoading = true)),
         switchMap(() =>
           this.categoriesService.updateCategory(category).pipe(
             tap(() => this.router.navigate(['/categories'])),
-            finalize(() => (this.isLoading = false)),
+            catchError((error: HttpErrorResponse) =>
+              this.alertService.open('', {
+                label: error.message,
+                status: TuiNotification.Error,
+              })
+            ),
             concatMap(() =>
               this.alertService.open('', {
                 label: 'Successfully!',
                 status: TuiNotification.Success,
+                autoClose: false,
               })
-            )
+            ),
+            finalize(() => (this.isLoading = false)),
           )
         )
       )

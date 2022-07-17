@@ -7,6 +7,9 @@ import {DashboardComponent} from "../components/dashboard/dashboard.component";
 import {CategoryDetailComponent} from "../components/category-detail/category-detail.component";
 import {CategoryAddComponent} from "../components/category-add/category-add.component";
 import {CategoryUpdateComponent} from "../components/category-update/category-update.component";
+import {ProductDetailComponent} from "../components/product-detail/product-detail.component";
+import {ProductUpdateComponent} from "../components/product-update/product-update.component";
+import {ProductAddComponent} from "../components/product-add/product-add.component";
 
 const routes: Routes = [
   {
@@ -32,6 +35,18 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent,
+  },
+  {
+    path: 'products/detail/:id',
+    component: ProductDetailComponent,
+  },
+  {
+    path: 'products/update/:id',
+    component: ProductUpdateComponent,
+  },
+  {
+    path: 'products/add',
+    component: ProductAddComponent,
   },
   {
     path: 'users',

@@ -1,7 +1,7 @@
 <div class="dark:bg-gray-800 rounded-xl p-6 h-full">
-  <ng-container *ngIf="category$ | async as category; else loadingCategory">
-    <p class="tui-text_h1">Category {{ category.name }} loaded.</p>
-    <button tuiButton size="s" class="mt-20" routerLink="/categories">
+  <ng-container *ngIf="product; else loadingCategory">
+    <p class="tui-text_h1">Product {{ product.title }} loaded.</p>
+    <button tuiButton size="s" class="mt-20" routerLink="/products">
       Go to List
     </button>
   </ng-container>

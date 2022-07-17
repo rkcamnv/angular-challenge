@@ -8,19 +8,22 @@ import { ICategory } from '../interfaces/category';
   providedIn: 'root',
 })
 export class CategoriesService {
-  url = environment.url;
+  url = `${environment.url}/categories`;
 
   constructor(private http: HttpClient) {}
 
   getCategories = (): Observable<ICategory[]> =>
-    this.http.get<ICategory[]>(`${this.url}/categories`);
+    this.http.get<ICategory[]>(this.url);
 
   getCategory = (id: number): Observable<ICategory> =>
-    this.http.get<ICategory>(`${this.url}/categories/${id}`);
+    this.http.get<ICategory>(`${this.url}/${id}`);
 
   addCategory = (category: ICategory): Observable<ICategory> =>
-    this.http.post<ICategory>(`${this.url}/categories`, category);
+    this.http.post<ICategory>(this.url, category);
 
   updateCategory = (category: ICategory): Observable<ICategory> =>
-    this.http.put<ICategory>(`${this.url}/categories/${category.id}`, category);
+    this.http.put<ICategory>(`${this.url}/${category.id}`, category);
+
+  deleteCategory = (id: number): Observable<any> =>
+    this.http.delete<any>(`${this.url}/${id}`);
 }
