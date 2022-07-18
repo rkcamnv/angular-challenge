@@ -10,6 +10,7 @@ import {CategoryUpdateComponent} from "../components/category-update/category-up
 import {ProductDetailComponent} from "../components/product-detail/product-detail.component";
 import {ProductUpdateComponent} from "../components/product-update/product-update.component";
 import {ProductAddComponent} from "../components/product-add/product-add.component";
+import {LoginComponent} from "../components/login/login.component";
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: EmployeesComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
 ];
 

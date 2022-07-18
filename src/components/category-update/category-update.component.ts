@@ -8,7 +8,7 @@ import {
   Observable,
   of,
   Subject,
-  switchMap,
+  switchMap, takeUntil,
   tap,
 } from 'rxjs';
 import { ICategory } from '../../interfaces/category';
@@ -68,10 +68,12 @@ export class CategoryUpdateComponent implements OnInit, OnDestroy {
   updateCategory = (category: ICategory) =>
     this.updateCategory$
       .pipe(
+        takeUntil(this.subscription$),
         tap(() => (this.isLoading = true)),
         switchMap(() =>
           this.categoriesService.updateCategory(category).pipe(
             tap(() => this.router.navigate(['/categories'])),
+            finalize(() => (this.isLoading = false)),
             catchError((error: HttpErrorResponse) =>
               this.alertService.open('', {
                 label: error.message,
@@ -85,7 +87,6 @@ export class CategoryUpdateComponent implements OnInit, OnDestroy {
                 autoClose: false,
               })
             ),
-            finalize(() => (this.isLoading = false)),
           )
         )
       )

@@ -1,0 +1,39 @@
+<div class="flex justify-center items-center h-full">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="p-6 dark:bg-gray-800 rounded-xl shadow-2xl w-[480px]"
+    autocomplete="off"
+  >
+    <tui-input
+      tuiTextfieldSize="l"
+      tuiTextfieldAutocomplete="email"
+      formControlName="email"
+    >
+      Email
+    </tui-input>
+    <tui-field-error formControlName="email" class="absolute"></tui-field-error>
+    <tui-input-password
+      tuiTextfieldSize="l"
+      tuiTextfieldAutocomplete="current-password"
+      formControlName="password"
+      class="mt-10"
+    >
+      Password
+    </tui-input-password>
+    <tui-field-error
+      formControlName="password"
+      class="absolute"
+    ></tui-field-error>
+    <div class="mt-10 flex justify-end">
+      <button
+        tuiButton
+        size="m"
+        [showLoader]="(isLoading$ | async) || false"
+        class="w-36"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

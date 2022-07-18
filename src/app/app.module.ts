@@ -26,10 +26,10 @@ import {CategoryDetailComponent} from '../components/category-detail/category-de
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CategoryAddComponent} from '../components/category-add/category-add.component';
 import {
-  TuiAvatarModule,
+  TuiAvatarModule, TuiFieldErrorModule,
   TuiFieldErrorPipeModule,
   TuiInputModule,
-  TuiInputNumberModule,
+  TuiInputNumberModule, TuiInputPasswordModule,
   TuiSelectModule
 } from '@taiga-ui/kit';
 import {CategoryUpdateComponent} from '../components/category-update/category-update.component';
@@ -42,6 +42,7 @@ import {TuiAutoFocusModule, TuiLetModule} from "@taiga-ui/cdk";
 import {TuiEditorModule} from "@taiga-ui/addon-editor";
 import {ProductUpdateComponent} from "../components/product-update/product-update.component";
 import {ProductDeleteComponent} from "../components/product-delete/product-delete.component";
+import {LoginComponent} from "../components/login/login.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {ProductDeleteComponent} from "../components/product-delete/product-delet
     ProductDetailComponent,
     ProductAddComponent,
     ProductUpdateComponent,
-    ProductDeleteComponent
+    ProductDeleteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,8 @@ import {ProductDeleteComponent} from "../components/product-delete/product-delet
     TuiLetModule,
     TuiAvatarModule,
     TuiEditorModule,
+    TuiInputPasswordModule,
+    TuiFieldErrorModule,
   ],
   entryComponents: [CategoryDeleteComponent, ProductDeleteComponent], // for stackblitz
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
