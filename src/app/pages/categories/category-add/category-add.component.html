@@ -1,0 +1,27 @@
+  <div class="dark:bg-gray-800 rounded-xl p-6 h-full">
+    <form (ngSubmit)="onSubmit()" #formCategory="ngForm">
+      <div class="tui-row">
+        <tui-input
+          [ngModel]="(category$ | async)?.name"
+          name="name"
+          required
+          tuiTextfieldSize="m"
+          tuiTextfieldExampleText="Enter category name..."
+          class="tui-col_6"
+        >Name</tui-input
+        >
+        <tui-input
+          [ngModel]="(category$ | async)?.image || 'https://placeimg.com/640/480/any'"
+          name="image"
+          required
+          tuiTextfieldSize="m"
+          tuiTextfieldExampleText="Enter category image..."
+          class="tui-col_6"
+        >Image</tui-input
+        >
+      </div>
+      <div class="mt-10 flex justify-end">
+        <button tuiButton size="m" [showLoader]="(isLoading$ | async) || false">Create Category</button>
+      </div>
+    </form>
+  </div>

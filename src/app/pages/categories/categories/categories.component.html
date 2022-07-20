@@ -1,0 +1,32 @@
+<div class="dark:bg-gray-800 rounded-xl p-6 h-full">
+  <ng-container *ngIf="categories$ | async as categories; else showLoading">
+    <div class="flex justify-end">
+      <button tuiButton size="m" icon="tuiIconPlus" routerLink="/categories/create">Add New</button>
+    </div>
+    <table class="tui-table mt-10">
+      <tbody>
+      <tr class="tui-table__tr">
+        <th class="tui-table__th tui-table__th_font-size_l">Id</th>
+        <th class="tui-table__th tui-table__th_font-size_l">Name</th>
+        <th class="tui-table__th tui-table__th_font-size_l">Image</th>
+        <th class="tui-table__th tui-table__th_font-size_l w-52">Actions</th>
+      </tr>
+      <tr class="tui-table__tr" *ngFor="let category of categories">
+        <td class="tui-table__td">{{category.id}}</td>
+        <td class="tui-table__td">{{category.name}}</td>
+        <td class="tui-table__td">
+          <img class="w-8 h-8" [src]="category.image" alt="" loading="lazy">
+        </td>
+        <td class="tui-table__td">
+          <a tuiLink [routerLink]="['/categories/detail', category.id]">Detail</a> |
+          <a tuiLink [routerLink]="['/categories/update', category.id]" mode="positive">Update</a> |
+          <a tuiLink [routerLink]="['/categories/update', category.id]" mode="negative">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #showLoading>
+    <app-loading></app-loading>
+  </ng-template>
+</div>
